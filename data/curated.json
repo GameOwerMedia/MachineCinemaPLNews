@@ -1,0 +1,42 @@
+[
+  {
+    "title": "OpenAI ogłasza aktualizację narzędzi wideo — nowe API dla twórców",
+    "summary": "Nowe funkcje dla integracji z pipeline’ami produkcyjnymi.",
+    "url": "https://news.google.com/articles/placeholder-openai-video",
+    "source": "Google News",
+    "published_at": "2025-10-24T10:00:00+02:00",
+    "topic": "Produkty"
+  },
+  {
+    "title": "Meta prezentuje multimodalne usprawnienia modeli",
+    "summary": "Lepsza rozumienie obrazu, dźwięku i tekstu.",
+    "url": "https://news.google.com/articles/placeholder-meta-mm",
+    "source": "Google News",
+    "published_at": "2025-10-24T11:00:00+02:00",
+    "topic": "Badania"
+  },
+  {
+    "title": "Anthropic rozszerza narzędzia enterprise dla zespołów R&D",
+    "summary": "Skupienie na bezpieczeństwie i audytowalności.",
+    "url": "https://news.google.com/articles/placeholder-anthropic-enterprise",
+    "source": "Google News",
+    "published_at": "2025-10-24T12:00:00+02:00",
+    "topic": "Biznes"
+  },
+  {
+    "title": "Stability ogłasza modele wideo do prototypowania",
+    "summary": "Wydajny prewiz do filmów i reklam.",
+    "url": "https://news.google.com/articles/placeholder-stability-video",
+    "source": "Google News",
+    "published_at": "2025-10-24T13:00:00+02:00",
+    "topic": "Produkty"
+  },
+  {
+    "title": "Hugging Face: nowe narzędzia do kuracji zbiorów danych",
+    "summary": "Łańcuch jakości: anotacja, deduplikacja, audyt.",
+    "url": "https://news.google.com/articles/placeholder-hf-datasets",
+    "source": "Google News",
+    "published_at": "2025-10-24T14:00:00+02:00",
+    "topic": "Narzędzia"
+  }
+]

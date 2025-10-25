@@ -1,0 +1,39 @@
+# Runtime configuration
+newsletter:
+  mode: "segments"          # "top" or "segments"
+  per_bucket: 5             # default N per segment; total ~= N if top
+  total_fallback: 5         # hard cap fallback for "top"
+
+sources:
+  curated_first: true       # if live fails, use curated
+  live_enabled: true
+  live_timeout_s: 12
+
+time:
+  tz: "Europe/Warsaw"
+  window_hours: 24          # fetch last 24h
+
+seen_cache:
+  path: "data/seen.json"
+  record_only_published: true
+  ttl_days: null            # e.g., 7 or null to disable
+  allow_reset_env: "RESET_SEEN"  # if env=1 then reset
+
+html:
+  title: "Machine Cinema — AI News (PL)"
+  banner_text: "Machine Cinema — Przegląd AI (PL)"
+  footer_links:
+    - ["GitHub", "https://github.com/GameOwerMedia/MachineCinemaPLNews"]
+    - ["Machine Cinema", "https://machinecinema.org/"]
+    - ["Kontakt", "mailto:gameowermedia@gmail.com"]
+
+email:
+  enabled: false
+  from_addr_env: "SMTP_FROM"
+  to_file: "data/subscribers.txt"
+  subject_prefix: "[MachineCinema AI]"
+
+# Never remove Google News unless canonical is certain.
+link_policy:
+  allow_google_news: true
+  prefer_canonical: true

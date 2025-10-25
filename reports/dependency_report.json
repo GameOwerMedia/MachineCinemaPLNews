@@ -1,0 +1,100 @@
+{
+  "env": {
+    "python": "3.12.10 (main, Aug 28 2025, 21:54:05) [GCC 13.3.0]",
+    "os": "Linux-6.12.13-x86_64-with-glibc2.39",
+    "online": true,
+    "pip_method": "venv (existing)"
+  },
+  "pypi": [
+    {
+      "name": "feedparser",
+      "status": "installed",
+      "version": "6.0.12",
+      "import_ok": true,
+      "notes": ""
+    },
+    {
+      "name": "trafilatura",
+      "status": "installed",
+      "version": "2.0.0",
+      "import_ok": true,
+      "notes": ""
+    },
+    {
+      "name": "readability-lxml",
+      "status": "installed",
+      "version": "0.8.4.1",
+      "import_ok": true,
+      "notes": ""
+    },
+    {
+      "name": "newspaper4k[gnews]",
+      "status": "installed",
+      "version": "0.9.3.1",
+      "import_ok": true,
+      "notes": ""
+    },
+    {
+      "name": "tldextract",
+      "status": "installed",
+      "version": "5.3.0",
+      "import_ok": true,
+      "notes": ""
+    },
+    {
+      "name": "url-normalize",
+      "status": "installed",
+      "version": "2.2.1",
+      "import_ok": true,
+      "notes": ""
+    },
+    {
+      "name": "rapidfuzz",
+      "status": "installed",
+      "version": "3.14.1",
+      "import_ok": true,
+      "notes": ""
+    },
+    {
+      "name": "datasketch",
+      "status": "installed",
+      "version": "1.6.5",
+      "import_ok": true,
+      "notes": ""
+    },
+    {
+      "name": "sentence-transformers",
+      "status": "failed",
+      "version": null,
+      "import_ok": false,
+      "notes": "TIMEOUT after 60s"
+    },
+    {
+      "name": "requests-cache",
+      "status": "installed",
+      "version": "1.2.1",
+      "import_ok": true,
+      "notes": ""
+    }
+  ],
+  "hf": [
+    {
+      "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "status": "fail",
+      "notes": "Traceback (most recent call last):\n  File \"<string>\", line 2, in <module>\nModuleNotFoundError: No module named 'sentence_transformers'"
+    },
+    {
+      "model": "intfloat/multilingual-e5-base",
+      "status": "fail",
+      "notes": "Traceback (most recent call last):\n  File \"<string>\", line 2, in <module>\nModuleNotFoundError: No module named 'sentence_transformers'"
+    }
+  ],
+  "probes": [
+    "url_normalize_tldextract: OK | stdout: example.com | google.com | stderr: /workspace/MachineCinemaPLNews/scratch/probes/url_normalize_tldextract.py:9: DeprecationWarning: The 'registered_domain' property is deprecated and will be removed in the next major version. Use 'top_domain_under_public_suffix' instead, which has the same behavior but a more accurate name.\n  domains = [tldextract.extract(u).registered_domain for u in normalized]",
+    "newspaper_gnews: OK | stdout: https://news.google.com",
+    "trafilatura_extract: OK | stdout: To jest test.",
+    "rapidfuzz_ratio: OK | stdout: 80.76923076923077",
+    "datasketch_minhash: OK | stdout: 0.547",
+    "requests_cache_session: OK | stdout: backend: scratch/cache"
+  ]
+}
