@@ -1,0 +1,46 @@
+name: Daily 09:00 PL build
+on:
+  schedule:
+    # 09:00 PL across DST (approximate): 07:00 or 08:00 UTC
+    - cron: "0 7 * * *"
+    - cron: "0 8 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install deps
+        run: |
+          pip install pyyaml
+      - name: Build issue (idempotent guard inside)
+        env:
+          RESET_SEEN: "0"
+        run: |
+          python generate_all.py
+      - name: Commit changes if any
+        run: |
+          set -e
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -m "chore(ci): daily build $(date -u +%F)"
+            git push
+          else
+            echo "No changes to commit."
+          fi
+  deploy:
+    needs: build
+    uses: ./.github/workflows/pages.yml
+    secrets: inherit
