@@ -1,8 +1,9 @@
 from __future__ import annotations
 import json, os, hashlib, logging
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime
 from zoneinfo import ZoneInfo
+import urllib.parse as _up
 
 LOG = logging.getLogger("mcpl")
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
@@ -39,10 +40,30 @@ def stable_hash(s: str) -> str:
     return hashlib.sha256(s.encode("utf-8")).hexdigest()[:12]
 
 def canonical_or_allowed(url: str) -> str:
-    # Guardrail: do not drop Google News unless sure.
-    if "news.google." in url:
+    if not url:
         return url
-    return url
+    if "news.google." in url:
+        try:
+            parsed = _up.urlparse(url)
+            qs = _up.parse_qs(parsed.query)
+            cand = qs.get("url", [None])[0]
+            if cand and cand.startswith(("http://", "https://")):
+                return cand
+        except Exception:
+            pass
+        return url
+    try:
+        p = _up.urlparse(url)
+        cleaned_qs = _up.parse_qsl(p.query, keep_blank_values=False)
+        cleaned_qs = [
+            (k, v)
+            for (k, v) in cleaned_qs
+            if k.lower() not in {"utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"}
+        ]
+        new_query = _up.urlencode(cleaned_qs)
+        return _up.urlunparse((p.scheme, p.netloc, p.path, p.params, new_query, p.fragment))
+    except Exception:
+        return url
 
 def idempotent_guard_for_today():
     d = today_pl_date()
